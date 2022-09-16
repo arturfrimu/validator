@@ -1,45 +1,42 @@
 package com.arturfrimu.version1;
 
+import java.util.Objects;
+
 public interface Validator {
     boolean validate(String str);
 
-    class StringBetweenValidator implements Validator {
-        private int maxLength;
-        private int minLength;
+    class LengthBetween implements Validator {
+        private final int maxLength;
+        private final int minLength;
 
-        public StringBetweenValidator(int minLength, int maxLength) {
-            System.out.println("StringBetweenValidator created");
+        public LengthBetween(int minLength, int maxLength) {
             this.minLength = minLength;
             this.maxLength = maxLength;
         }
 
         @Override
         public boolean validate(String str) {
-            return str != null && minLength < str.length() && str.length() < maxLength;
+            return Objects.nonNull(str) && minLength < str.length() && str.length() < maxLength;
         }
     }
 
-    class StringEmptyValidator implements Validator {
-        public StringEmptyValidator() {
-            System.out.println("StringEmptyValidator created");
-        }
-
+    class Empty implements Validator {
         @Override
         public boolean validate(String str) {
-            return str != null && str.length() > 0;
+            return Objects.nonNull(str) && str.length() > 0;
         }
     }
 
-    class StringGreaterThanValidator implements Validator {
-        private int maxLength;
+    class GreaterThan implements Validator {
+        private final int maxLength;
 
-        public StringGreaterThanValidator(int maxLength) {
+        public GreaterThan(int maxLength) {
             this.maxLength = maxLength;
         }
 
         @Override
         public boolean validate(String str) {
-            return str != null && str.length() > maxLength;
+            return Objects.nonNull(str) && str.length() > maxLength;
         }
     }
 }
