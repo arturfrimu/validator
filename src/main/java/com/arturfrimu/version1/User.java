@@ -1,5 +1,7 @@
 package com.arturfrimu.version1;
 
+import java.util.Arrays;
+
 public class User {
     private String reason;
 
@@ -9,10 +11,6 @@ public class User {
     }
 
     public boolean isReasonValid(Validator... validators) {
-        boolean isValid = false;
-        for (Validator validator : validators) {
-            isValid = validator.validate(reason);
-        }
-        return isValid;
+        return Arrays.stream(validators).allMatch(validator -> validator.validate(reason));
     }
 }

@@ -1,8 +1,10 @@
 package com.arturfrimu.version5;
 
+import com.arturfrimu.version5.IdCardValidator.Standard801;
+
 public class AdminValidator {
     public void validate(Admin admin) {
-        if (!admin.isIdCardValid(new IdCardValidator.Standard801())) {
+        if (!admin.isIdCardValid(new Standard801())) {
             System.out.println("INVALID");
         } else if (!admin.isRequestReasonValid(new StringValidator.Length(10))) {
             System.out.println("IDNP need to start with 2");

@@ -5,7 +5,7 @@ import com.arturfrimu.version4good.StringValidator.StartWith;
 
 public class AdminValidator {
     public void validate(Admin admin) {
-        if (admin.isValidIdnp(new Length(13))) {
+        if (admin.isValidIdnp(new Length(13), new StartWith("2"))) {
             System.out.println("IDNP length need to be 13");
         } else if (admin.isValidIdnp(new StartWith("2"))) {
             System.out.println("IDNP need to start with 2");
